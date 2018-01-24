@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign InVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SignInVC" customModule="DriverApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drivers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRO-0u-Rcr">
+                                <rect key="frame" x="130" y="20" width="115" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bR9-sD-LCa">
+                                <rect key="frame" x="105" y="185" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log In "/>
+                                <connections>
+                                    <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pwh-e4-3d9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdx-sc-7hj">
+                                <rect key="frame" x="218" y="185" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JAO-1y-cNc"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aB7-Yh-ZYc">
+                                <rect key="frame" x="91" y="72" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ak9-RD-IcF">
+                                <rect key="frame" x="91" y="126" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" smartDashesType="no"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="aB7-Yh-ZYc" id="aeJ-VK-yqa"/>
+                        <outlet property="passwordTextField" destination="Ak9-RD-IcF" id="y9z-m1-yXr"/>
+                        <segue destination="vAb-1B-70I" kind="show" identifier="DriverVCSegue" id="el9-IS-hvL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
+        </scene>
+        <!--DriverVC-->
+        <scene sceneID="iiv-eA-McM">
+            <objects>
+                <viewController id="vAb-1B-70I" customClass="DriverVC" customModule="DriverApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zOh-4u-pO0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guq-Pv-ZEX">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Driver" id="nJP-q5-4Gn">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="8Uh-jo-67O">
+                                            <connections>
+                                                <action selector="logOut:" destination="vAb-1B-70I" id="rut-Ay-Jyp"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="z48-El-F8d">
+                                <rect key="frame" x="0.0" y="64" width="375" height="511"/>
+                            </mapView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swu-VG-xeN">
+                                <rect key="frame" x="99" y="585" width="176" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel Uber"/>
+                                <connections>
+                                    <action selector="cancelUber:" destination="vAb-1B-70I" eventType="touchUpInside" id="dUI-IE-qYi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="z48-El-F8d" firstAttribute="top" secondItem="guq-Pv-ZEX" secondAttribute="bottom" id="0lM-U5-6ge"/>
+                            <constraint firstItem="z48-El-F8d" firstAttribute="top" secondItem="2hJ-9e-I1U" secondAttribute="top" constant="44" id="64G-qr-hEC"/>
+                            <constraint firstItem="z48-El-F8d" firstAttribute="top" secondItem="guq-Pv-ZEX" secondAttribute="bottom" id="FP6-gL-mLN"/>
+                            <constraint firstItem="guq-Pv-ZEX" firstAttribute="top" secondItem="zOh-4u-pO0" secondAttribute="top" constant="20" id="HIa-4p-Owd"/>
+                            <constraint firstAttribute="trailing" secondItem="guq-Pv-ZEX" secondAttribute="trailing" id="OZD-gu-t7y"/>
+                            <constraint firstItem="z48-El-F8d" firstAttribute="leading" secondItem="zOh-4u-pO0" secondAttribute="leading" id="U59-QY-y4r"/>
+                            <constraint firstItem="guq-Pv-ZEX" firstAttribute="leading" secondItem="zOh-4u-pO0" secondAttribute="leading" id="dM9-Yf-tFe"/>
+                            <constraint firstAttribute="trailing" secondItem="z48-El-F8d" secondAttribute="trailing" id="qlo-jt-EXa"/>
+                            <constraint firstItem="2hJ-9e-I1U" firstAttribute="bottom" secondItem="z48-El-F8d" secondAttribute="bottom" constant="161" id="w2b-m2-AbY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2hJ-9e-I1U"/>
+                    </view>
+                    <connections>
+                        <outlet property="acceptUberBtn" destination="swu-VG-xeN" id="zVZ-PI-hwz"/>
+                        <outlet property="myMap" destination="z48-El-F8d" id="mdh-bb-ony"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="an3-un-RKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="829.60000000000002" y="117.39130434782609"/>
+        </scene>
+    </scenes>
+</document>
