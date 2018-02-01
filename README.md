@@ -1,88 +1,73 @@
-# Project Title
+# Driver App
 
-One Paragraph of project description goes here
+This project is based on a platform about an "uber" clone, this is the rider repository it means this is where the user  
+request the "uber", this project is developed in "swift3" programming language and using the Xcode 9 program, This app 
+doesn't work without the rider reception, also we are working with a google database system, if you want to create your
+own database go to https://firebase.google.com/ the page tells you step by step how to create your own database system
+with swiftt 3 and Xcode9.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This project is for Xcode 9, you should have installed Cocoapods, if you haven't installed Cocoapods go to the web page 
+https://cocoapods.org/ there is a brief explanation about how to install them.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+you will need this pods:
 
-```
-Give examples
-```
+    ```
+    pod 'Firebase'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Database'
+    pod 'Firebase/Core'
+    ```
+    
+The app is using the Firebase database system in order to save the users and all the data, also the app is using the 
+user's/driver's location in order to determine from where is the request, so on the .plist file from the Xcode project you 
+should add a row with the next keys asking for the user to allow the app to get the location,the string value is on your 
+own:  
+
+    ```
+    Privacy - Location Usage Description 
+    Privacy - Location When In Use Usage Description
+    ```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+Install Xcode 9 going to your AppStore, then do the prerequisites installing cocoapods, pods and the .plist info, check your 
+firebase database system.
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+At the Xcode program run the project using the simulator for iPhone 8 Plus or your plugin your iPhone choosing it on the 
+simulator devices section , please use a custom location in order to see how the project works on diferent locations.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+This project is not ready for deployment on the App Store yet.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please contact sergiman94@gmail.com if you want to contribute for the project.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use https://github.com/ for versioning. If you have questions about the versions available, contact sergiman94@gmail.com
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Sergio Manrique** - *Initial work* - [sergiman94](https://github.com/sergiman94)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the domain of Sergio Manrique Copyright © 2018 smm. All rights reserved.
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* This code has been written using references on youtube and other public programs with learning purposes
+
+* What we did here on the Comment branch is to xplain the areas of the code where the complexity is remarkable, also we try 
+  to explain the MVC system with the comments
+
 
