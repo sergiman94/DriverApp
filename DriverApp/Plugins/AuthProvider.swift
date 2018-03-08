@@ -5,12 +5,19 @@
 //  Created by Sergio Manrique on 1/18/18.
 //  Copyright © 2018 smm. All rights reserved.
 //
+/*
+ Esta clase contiene las autenticaciones de las cuentas ligadas a la base de datos
+ de firebase, sus verificaciones y demás.
+*/
 
 import Foundation
 import FirebaseAuth
 
+// Handler que contiene los mensajes al momento de ingresar a la aplicacion
 typealias LoginHandler = (_ msg: String?) -> Void
 
+// Estructura que contiene los distintos errores que pueden mostrarse en la autenticacion,
+// registro o ingreso a la aplicacion
 struct LoginErrorCode {
     
     static let INVALID_EMAIL = "Invalid Email Adress, Please Provide A Real Email Adress"
@@ -30,6 +37,7 @@ class AuthProvider{
         return _instance
     }
     
+    // Funcion que gestiona el ingreso del ususario a la aplicacion
     func login (withEmail: String, password: String, loginHandler: LoginHandler? ){
         
         Auth.auth().signIn(withEmail: withEmail, password: password) { (user, error) in
@@ -48,6 +56,7 @@ class AuthProvider{
         
     }
     
+    //Funcion que gestiona el registro del usuario otrogando una clave automatica
     func signUp(withEmail: String, password: String, loginHandler: LoginHandler?){
         
         Auth.auth().createUser(withEmail: withEmail, password: password) { (user, error) in
@@ -60,9 +69,11 @@ class AuthProvider{
                 if user?.uid != nil {
                     
                     // store the user to database
+                    // se guarda el usuario en la base de datos
                      DBProvider.Instance.saveUser(withID: user!.uid, email: withEmail, password: password)
                     
                     // login the user
+                    // automaticamente despues de registrarse se ingresa el usuario
                     self.login(withEmail: withEmail, password: password, loginHandler: loginHandler)
                 }
             }
@@ -71,6 +82,7 @@ class AuthProvider{
         
     }
     
+    // Funcion que cierra la sesion del usuario
     func logOut() -> Bool{
         
         if Auth.auth().currentUser != nil {
@@ -85,6 +97,7 @@ class AuthProvider{
         return true
     }
     
+    // Funcion que contiene los distintos errores que pueden aparecer en el momento de autenticacion del usuario
     private func handlerErrors(err: NSError, loginHandler: LoginHandler? ){
         
         if let errCode = AuthErrorCode(rawValue: err.code) {

@@ -5,10 +5,15 @@
 //  Created by Sergio Manrique on 1/22/18.
 //  Copyright © 2018 smm. All rights reserved.
 //
+/*
+ Clase encargada de gestionar la localizacion y de recibir la solicitud del rider,
+ al mismo tiempo de enviar la solicitud para cancelarla al rider
+*/
 
 import UIKit
 import MapKit
 
+// recibe el protocolo UberController de la clase UberHandler
 class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UberController {
 
     @IBOutlet weak var myMap: MKMapView!
@@ -32,6 +37,9 @@ class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, 
         UberHandler.Instance.obseveMessagesForDriver()
     }
     
+    /* funcion encargada de de definir e inicializar el delegado del location manager, como tambien de pedir
+     la autorizacion al usuario de usar su localizacion y demas requisitos necesarios para una
+     buena conexion y localizacion */
     private func initializeLocationManager(){
         
         locationManager.delegate = self
@@ -41,12 +49,19 @@ class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, 
         UberHandler.Instance.delegate = self
         
     }
-
+    
+    /*
+     Funcion encargada de conocer la localizacion del usuario u objeto y gestionar su movimiento en el mapa
+     tambien de realziar las anotaciones necesarias con respecto al driver en el mapa para asi
+     poder visualizarlo, demás gestiones
+    */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // if we have the locations from the manager
+        // si tenemos las localizaciones desde el manager
         if let location = locationManager.location?.coordinate{
             
+            // encontramos la ubicacion de esta entidad con respecto a la latitud y la longitud
             userLocation = CLLocationCoordinate2D(latitude:location.latitude, longitude: location.longitude)
             
             let region = MKCoordinateRegion(center: userLocation!, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -73,12 +88,17 @@ class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, 
         
     }
     
+    /*
+     Boton cerrar sesion
+     se cancelan todas las solicitudes y se deja de actualizar la ubicacion del driver en la bd
+    */
     @IBAction func logOut(_ sender: Any) {
         if AuthProvider.Instance.logOut() {
             
             if acceptedUber {
                 acceptUberBtn.isHidden = true
                 UberHandler.Instance.cancelUberForDriver()
+                // dejamos de actualizar la localizacion del usuario a la bd
                 timer.invalidate()
             }
             
@@ -90,6 +110,10 @@ class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, 
         }
     }
     
+    /*
+     funcion encargada de cancelar la solicitud del rider, esta aparece solo cuando se haya aceptado la solicitud del rider
+     funcion del protocolo uberController
+    */
     func riderCanceledUber() {
         
         if !driverCanceledUber{
@@ -103,6 +127,10 @@ class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, 
         driverCanceledUber = false
     }
     
+    /*
+     Funcion que advierte al driver la llegada de una solicitud por parte del rider
+     funcion del protocolo uberController
+    */
     func acceptUber(lat: Double, long: Double) {
         
         if !acceptedUber{
@@ -110,20 +138,33 @@ class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, 
         }
     }
     
+    /*
+     funcion que actualiza la ubicacion del rider
+     funcion del protocolo uberController
+    */
     func updateRidersLocation(lat: Double, long: Double) {
         riderLocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
     
+    /*
+     funcion que cancela una solicitud
+     funcion del protocolo uberController
+    */
     func uberCanceled() {
         acceptedUber = false
         acceptUberBtn.isHidden = true
         timer.invalidate()
     }
     
+    // funcion que actualiza la ubicacion del driver
     @objc func updateDriversLocation(){
         UberHandler.Instance.updateDriverLocation(lat: userLocation!.latitude, long: userLocation!.longitude)
     }
     
+    /*
+     Boton que cancela la solicitud
+     cancela la solicitud y deja de actualizar la ubicacion de el driver
+    */
     @IBAction func cancelUber(_ sender: Any) {
         if acceptedUber{
             driverCanceledUber = true
@@ -133,7 +174,9 @@ class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, 
         }
     }
     
-    
+    /*
+     funcion encargada de recibir la solicitud por parte de un rider y mostrarla al driver
+    */
     private func uberRequest(title: String, message: String, requestAlive: Bool){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -164,6 +207,7 @@ class DriverVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, 
         present(alert, animated: true, completion: nil)
     }
     
+    // funcion que contiene un mensaje de alerta acorde a la situacion
     private func alertTheUser(title: String, message: String){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

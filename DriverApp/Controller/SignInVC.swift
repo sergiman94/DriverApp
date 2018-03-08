@@ -6,6 +6,13 @@
 //  Copyright © 2018 smm. All rights reserved.
 //
 
+/*
+ Esta clase gestiona todo lo relacionado con el primer ViewContoller
+ entrada de texto y la ejecucion de los distintas clases, haciendo
+ invocacion de las funciones que estas mismas contienen, asi como el
+ traslado del usuario a otros ViewControllers
+*/
+
 import UIKit
 import FirebaseAuth
 
@@ -22,9 +29,13 @@ class SignInVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    @IBAction func logIn(_ sender: Any) {
     
+    // Boton LogIn (Ingresar)
+    @IBAction func logIn(_ sender: Any) {
+        
+        /* si las entradas de texto del usuario y contraseña no estan en blanco
+         ejecute la funcion login de la clase AuthProvider, de lo contrario
+         muestre al usuario un mensaje de alerta */
         if emailTextField.text != "" && passwordTextField.text != ""{
             
             AuthProvider.Instance.login(withEmail: emailTextField.text!, password: passwordTextField.text!, loginHandler: { (message) in
@@ -37,6 +48,7 @@ class SignInVC: UIViewController {
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
                     
+                    // traslado al otro ViewController
                     self.performSegue(withIdentifier: self.DRIVER_SEGUE, sender: nil)
                     print("LOGIN COMPLETED")
                 }
@@ -47,8 +59,12 @@ class SignInVC: UIViewController {
         }
     }
     
+    // Boton SignUp (registro)
     @IBAction func signUp(_ sender: Any) {
         
+        /* si las entradas de texto del usuario y contraseña no estan en blanco
+         ejecute la funcion signUp de la clase AuthProvider, de lo contrario
+         muestre al usuario un mensaje de alerta */
         if emailTextField.text != "" && passwordTextField.text != "" {
             
             AuthProvider.Instance.signUp(withEmail: emailTextField.text!, password: passwordTextField.text!, loginHandler: { (message) in
@@ -60,6 +76,7 @@ class SignInVC: UIViewController {
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
                     
+                    // traslado al otro ViewController
                     self.performSegue(withIdentifier: self.DRIVER_SEGUE, sender: nil)
                     print("CREATING USER COMPLETED")
                 }
@@ -72,7 +89,7 @@ class SignInVC: UIViewController {
         
     }
     
-    
+    // funcion que contiene los mensajes de alerta para mostrar al usuario 
     private func alertTheUser(title: String, message: String){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

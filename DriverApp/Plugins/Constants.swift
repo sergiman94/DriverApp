@@ -5,6 +5,9 @@
 //  Created by Sergio Manrique on 1/22/18.
 //  Copyright © 2018 smm. All rights reserved.
 //
+/*
+ Clase que provee las constantes que se usaran en la base de datos
+*/
 
 import Foundation
 
